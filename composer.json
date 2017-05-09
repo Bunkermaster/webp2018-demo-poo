@@ -1,0 +1,15 @@
+{
+    "name": "yann/stormtrooper",
+    "authors": [
+        {
+            "name": "bunkermaster",
+            "email": "yann.le-scouarnec@hetic.net"
+        }
+    ],
+    "require": {},
+    "autoload": {
+        "psr-4": {
+            "Yann\\Classe\\": "Yann/Classe"
+        }
+    }
+}
