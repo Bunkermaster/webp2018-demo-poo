@@ -24,9 +24,13 @@ class Stormtrooper implements SalutInterface
         $this->uuid = uniqid();
     }
 
-    public function saluer()
+    public function saluer(array $collection)
     {
-
+        foreach($collection as $trooper){
+            if($this->uuid !== $trooper->getUuid()){
+                echo $this->name.": Hi ".$trooper->getName()."!".PHP_EOL;
+            }
+        }
     }
 
     /**
@@ -55,6 +59,5 @@ class Stormtrooper implements SalutInterface
     {
         return $this->uuid;
     }
-
 
 }

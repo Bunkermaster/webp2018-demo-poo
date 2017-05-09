@@ -18,8 +18,9 @@ class Patrol
             echo "Je me sens seul".PHP_EOL;
             return;
         }
-        reset($this->collection);
-        current($this->collection)->saluer();
+        foreach($this->collection as $uuid => $trooper){
+            $trooper->saluer($this->collection);
+        }
     }
 
     /**

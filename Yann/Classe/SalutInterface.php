@@ -10,4 +10,5 @@ namespace Yann\Classe;
 interface SalutInterface
 {
     public function getUuid();
+    public function getName();
 }
