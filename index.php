@@ -15,5 +15,7 @@ $patrol->addToCollection(new Stormtrooper('TK-METRO'));
 $patrol->addToCollection(new Stormtrooper('TK-T'));
 $patrol->addToCollection(new Stormtrooper('Phasma'));
 $patrol->addToCollection(new Stormtrooper('FN-2187'));
-//var_dump($patrol);
+$patrol->saluer();
+echo "Ajout de LUKE".PHP_EOL;
+$patrol->addToCollection(new Stormtrooper('LUKE SKYWALKER'));
 $patrol->saluer();

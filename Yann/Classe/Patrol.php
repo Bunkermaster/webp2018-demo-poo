@@ -11,6 +11,8 @@ class Patrol
 {
     /** @var array $collection */
     private $collection;
+    /** @var array $salutations */
+    private $salutations = [];
 
     public function saluer()
     {
@@ -19,7 +21,7 @@ class Patrol
             return;
         }
         foreach($this->collection as $uuid => $trooper){
-            $trooper->saluer($this->collection);
+            $trooper->saluer($this);
         }
     }
 
@@ -61,6 +63,37 @@ class Patrol
             unset($this->collection[$uuid]);
         } else {
             throw new \Exception('UUID provided not found');
+        }
+    }
+
+    /**
+     * @return array
+     */
+    public function getSalutations(): array
+    {
+        return $this->salutations;
+    }
+
+    /**
+     * @param SalutInterface $trooper1
+     * @param SalutInterface $trooper2
+     * @return $this
+     * @internal param array $salutations
+     */
+    public function addSalutations(SalutInterface $trooper1, SalutInterface $trooper2)
+    {
+        $this->salutations[$trooper1->getUuid()][$trooper2->getUuid()] = true;
+    }
+
+    public function checkSalutation(SalutInterface $trooper1, SalutInterface $trooper2)
+    {
+        if(
+            isset($this->salutations[$trooper1->getUuid()][$trooper2->getUuid()])
+            && $this->salutations[$trooper1->getUuid()][$trooper2->getUuid()] == true
+        ){
+            return true;
+        } else {
+            return false;
         }
     }
 
