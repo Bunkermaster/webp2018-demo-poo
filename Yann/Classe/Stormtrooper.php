@@ -10,9 +10,9 @@ namespace Yann\Classe;
 class Stormtrooper implements SalutInterface
 {
     /** @var string $name */
-    private $name;
+    protected $name;
     /** @var string $uuid */
-    private $uuid;
+    protected $uuid;
 
     /**
      * Stormtrooper constructor.
@@ -24,6 +24,9 @@ class Stormtrooper implements SalutInterface
         $this->uuid = uniqid();
     }
 
+    /**
+     * @param Patrol $patrol
+     */
     public function saluer(Patrol $patrol)
     {
         foreach($patrol->getCollection() as $trooper){
@@ -33,7 +36,14 @@ class Stormtrooper implements SalutInterface
                 && $patrol->checkSalutation($this, $trooper) === false
             ){
                 $patrol->addSalutations($this, $trooper);
-                echo $this->name . ": Bonjour ".$trooper->getName() .PHP_EOL;
+                $thisClass = new \ReflectionClass($this);
+                $trooperClass = new \ReflectionClass($trooper);
+                printf('%s : '.APP_RANK_MSG[
+                        APP_EMPIRE_RANKS[$thisClass->getName()] <=> APP_EMPIRE_RANKS[$trooperClass->getName()]
+                    ].PHP_EOL,
+                    $this->name, $trooper->getName()
+                );
+//                echo $this->name . ": Bonjour ".$trooper->getName() .PHP_EOL;
             }
         }
     }
@@ -63,6 +73,24 @@ class Stormtrooper implements SalutInterface
     public function getUuid(): string
     {
         return $this->uuid;
+    }
+
+    /**
+     * @param SalutInterface $trooper
+     */
+    protected function formatMessage(SalutInterface $trooper)
+    {
+        $thisClass = new \ReflectionClass($this);
+        $trooperClass = new \ReflectionClass($trooper);
+        printf(
+            '%s : '.APP_RANK_MSG[
+                APP_EMPIRE_RANKS[$thisClass->getName()] <=>
+                APP_EMPIRE_RANKS[$trooperClass->getName()
+                ]
+            ].PHP_EOL,
+            $this->name,
+            $trooper->getName()
+        );
     }
 
 }

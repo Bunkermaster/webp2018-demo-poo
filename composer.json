@@ -10,6 +10,9 @@
     "autoload": {
         "psr-4": {
             "Yann\\Classe\\": "Yann/Classe"
-        }
+        },
+        "files": [
+            "conf.php"
+        ]
     }
 }

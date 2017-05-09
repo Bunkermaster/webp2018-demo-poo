@@ -7,15 +7,14 @@
  */
 require_once "vendor/autoload.php";
 
-use \Yann\Classe\{Patrol, Stormtrooper};
+use \Yann\Classe\{Patrol, Stormtrooper, Officer, DarthVader};
 
 $patrol = new Patrol();
+$patrol->addToCollection(new Officer('Bob L\'Eponge'));
 $patrol->addToCollection(new Stormtrooper('TK-101'));
 $patrol->addToCollection(new Stormtrooper('TK-METRO'));
 $patrol->addToCollection(new Stormtrooper('TK-T'));
 $patrol->addToCollection(new Stormtrooper('Phasma'));
+$patrol->addToCollection(new DarthVader('Anakin Skywalker'));
 $patrol->addToCollection(new Stormtrooper('FN-2187'));
-$patrol->saluer();
-echo "Ajout de LUKE".PHP_EOL;
-$patrol->addToCollection(new Stormtrooper('LUKE SKYWALKER'));
 $patrol->saluer();
